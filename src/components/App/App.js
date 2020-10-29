@@ -1,26 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
+import useArticles from '../../hooks/useArticles/useArticles';
+import useCategories from '../../hooks/useCategories/useCategories';
+
+import Filters from '../Filters/Filters';
 import List from '../List/List';
-import CardItem from '../CardItem/CardItem';
+import CartItem from '../CartItem/CartItem';
 import Resize from '../Resize/Resize';
 import Title from '../Title/Title';
 
 function App() {
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:3001/articles')
-      .then((response) => response.json())
-      .then((data) => setArticles(data));
-  }, [setArticles]);
+  const articles = useArticles();
+  const categories = useCategories();
 
   const pdt1 = {
     price: 12,
-    name: 'foo',
+    name: 'foo'
   };
   const pdt2 = {
     price: 42,
-    name: 'bar',
+    name: 'bar'
   };
 
   const [title, setTitle] = useState('Homepage');
@@ -28,14 +27,29 @@ function App() {
     setTitle('Page de liste');
   }
 
+  const [titleFilter, setTitleFilter] = useState('');
+  function handleChange(event) {
+    setTitleFilter(event.target.value);
+  }
+
+  const filteredArticles = articles
+    .filter(art => art.title.includes(titleFilter));
+
   return (
     <div>
       <Title title={title} />
       <button onClick={handleClick}>change title</button>
-      <Resize />
-      <List articles={articles} />
-      <CardItem product={pdt1} />
-      <CardItem product={pdt2} />
+      <Resize/>
+      <Filters
+        title={titleFilter}
+        handleChange={handleChange}
+      />
+      <List
+        articles={filteredArticles}
+        categories={categories}
+      />
+      <CartItem product={pdt1} />
+      <CartItem product={pdt2} />
     </div>
   );
 }

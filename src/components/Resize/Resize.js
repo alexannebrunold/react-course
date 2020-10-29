@@ -10,10 +10,12 @@ function Resize() {
     window.addEventListener('resize', resize);
     return () => {
       window.removeEventListener('resize', resize);
-    };
+    }
   }, []);
 
-  return <div>{width}px</div>;
+  return (
+    <div>{width}px</div>
+  );
 }
 
 export default Resize;
