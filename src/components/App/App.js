@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import List from '../List/List';
-import CartItem from '../CartItem/CartItem';
+import CardItem from '../CardItem/CardItem';
 import Resize from '../Resize/Resize';
 import Title from '../Title/Title';
 
@@ -34,8 +34,8 @@ function App() {
       <button onClick={handleClick}>change title</button>
       <Resize />
       <List articles={articles} />
-      <CartItem product={pdt1} />
-      <CartItem product={pdt2} />
+      <CardItem product={pdt1} />
+      <CardItem product={pdt2} />
     </div>
   );
 }

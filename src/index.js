@@ -1,9 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Article from './components/Article/Article';
-import CardItem from './components/CardItem';
-import App from './App';
+import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import './CardItem.css';
 
 function CardItem(props) {
   const { product } = props;
   const { price, item } = product;
   const [quantity, setQuantity] = useState(1);
   return (
-    <div>
+    <div className='CardItem'>
       <h1>Price : {price}</h1>
       <h1>Item :{item}</h1>
       <h1>quantity : {quantity}</h1>
